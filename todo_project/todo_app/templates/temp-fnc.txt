@@ -1,0 +1,45 @@
+{% for todo in todos %}
+  {% if not todo.isDone %}
+    <div class="d-grid">
+      <div class="d-flex gap-2">
+        <a href="{% url 'complete-todo' todo.id %}"><i class="bi bi-check2-square"></i></a>
+        <b>{{ todo.name }}</b>
+      </div>
+      <div class="d-flex gap-2">
+        <a href="{% url 'delete-todo' todo.id %}"><i class="bi bi-trash"></i></a>
+        <p>{{ todo.description }}</p>
+      </div>
+    </div>
+  {% endif %}
+  {% endfor %}
+
+  <p>Complétés</p>
+  {% for todo in todos %}
+  {% if todo.isDone %}
+    <div class="d-grid">
+      <div class="d-flex gap-2">
+        <a href="{% url 'delete-todo' todo.id %}"><i class="bi bi-trash"></i></a>
+        <b>{{ todo.name }}</b>
+      </div>
+      <div class="d-flex gap-2">
+        <p class="ms-4">{{ todo.description }}</p>
+      </div>
+    </div>
+  {% endif %}
+  {% endfor %}
+    <a class="btn btn-primary" href="/newtodo">+</a>
+
+
+
+<div class="d-grid todo-container">
+        <div class="d-grid">
+          <b class="todo-title">{{ todo.name }}</b>
+          <p class="ms-2">{{ todo.description }}</p>
+          <a href="{% url 'delete-todo' todo.id %}"><i class="bi bi-trash"></i></a>
+        </div>
+      </div>
+
+      <div class="position-absolute bottom-0 end-0 m-3"> 
+              <a href="{% url 'delete-todo' todo.id %}" ><i class="bi bi-trash"></i></a>
+              <a href="{% url 'complete-todo' todo.id %}"><i class="bi bi-check2-square"></i></a>
+            </div>
