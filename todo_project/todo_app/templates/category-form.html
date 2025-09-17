@@ -5,12 +5,13 @@
 {% load static %}
 
 <h2>Liste des TODOs</h2>
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
 
 <ul>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">+</button>
+    <button type="btn btn-primary">+</button>
   </form>
 </ul>
 

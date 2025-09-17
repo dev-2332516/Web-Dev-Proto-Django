@@ -2,6 +2,7 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
 
+
 from .forms import TodoForm
 from .forms import CategoryForm
 from .models import Todo

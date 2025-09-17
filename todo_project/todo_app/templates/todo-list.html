@@ -3,18 +3,29 @@
 
 {% block content %}
 {% load static %}
+{% load color_filter %}
 
 <!-- <h2>Liste des TODOs</h2> -->
-<a href="{% url 'category-form' %}">new categorie</a>
+
 <div class="d-grid h-100 p-3 gap-3">
   <div class="list-container d-flex gap-2 p-3">
     {% for todo in todos %}
     {% if not todo.isDone %}
-    <div class="d-grid todo-container">
+    <div class="d-grid todo-container" style="
+      border-color: {{ todo.category.color }}; 
+      background-color: {{ todo.category.color|hex_to_rgba:0.2 }};">
       <div class="d-grid gap-2 card">
         <div class="card-body">
           <h4 class="card-title text-wrap">{{ todo.name }}</h4>
           <p class="card-text text-wrap">{{ todo.description }}</p>
+          <div class="position-absolute bottom-0">
+          {% if todo.category %}
+              <p style="color: {{ todo.category.color }};">
+                  {{ todo.category.name }}
+              </p>
+          {% else %}
+              <p style="color: gray;">No Category</p>
+          {% endif %}          </div>
           <div class="position-absolute bottom-0 end-0 m-3">
             <a href="{% url 'delete-todo' todo.id %}"><i class="bi bi-trash"></i></a>
             <a href="{% url 'complete-todo' todo.id %}"><i class="bi bi-check2-square"></i></a>
@@ -24,16 +35,29 @@
     </div>
     {% endif %}
     {% endfor %}
-    <a class="btn btn-primary add-btn m-3" href="/newtodo">+</a>
+    <div class="buttons-group m-3">
+      <a class="btn btn-primary" href="{% url 'category-form' %}">New Category</a>
+      <a class="btn btn-primary" href="/newtodo">+</a>
+    </div>
   </div>
   <div class="list-container d-flex gap-2 p-3">
     {% for todo in todos %}
     {% if todo.isDone %}
-    <div class="d-grid todo-container">
+    <div class="d-grid todo-container"style="
+      border-color: {{ todo.category.color }}; 
+      background-color: {{ todo.category.color|hex_to_rgba:0.2 }};">
       <div class="d-grid gap-2 card">
         <div class="card-body">
           <h4 class="card-title text-wrap">{{ todo.name }}</h4>
           <p class="card-text text-wrap">{{ todo.description }}</p>
+          <div class="position-absolute bottom-0">
+          {% if todo.category %}
+              <p style="color: {{ todo.category.color }};">
+                  {{ todo.category.name }}
+              </p>
+          {% else %}
+              <p style="color: gray;">No Category</p>
+          {% endif %}          </div>
           <a href="{% url 'delete-todo' todo.id %}" class="position-absolute bottom-0 end-0 m-3"><i
               class="bi bi-trash"></i></a>
         </div>

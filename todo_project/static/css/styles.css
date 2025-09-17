@@ -38,11 +38,10 @@ body {
     border: #3b3b5a solid 3px;
 }
 
-.add-btn {
+.buttons-group {
     position: absolute;
     bottom: 10px; /* Distance from the bottom */
     right: 10px;
-    border-radius: 1.5rem;
 }
 
 .todo-title {
@@ -54,3 +53,6 @@ body {
     border: transparent 0px;
 }
 
+.btn {
+    border-radius: 1.5rem;
+}
