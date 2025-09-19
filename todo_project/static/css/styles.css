@@ -24,7 +24,8 @@ body {
     background-color: #1a1a2e;
     border-radius: 1.5rem;
     height: 100%;
-    border: #3b3b5a solid 3px
+    border: #3b3b5a solid 3px;
+    transition: 0.3s;
 }
 
 .todo-container {
@@ -55,4 +56,18 @@ body {
 
 .btn {
     border-radius: 1.5rem;
+}
+
+.beingDragged {
+ color: white;
+  background-color: black;
+}
+
+.hoverOver {
+  transition: 0.3s ease-out;
+  border: solid 5px #2a9d8f;
+}
+
+.dragElement, .dropZone {
+transition: 0.3s;
 }

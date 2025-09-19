@@ -8,10 +8,10 @@
 <!-- <h2>Liste des TODOs</h2> -->
 
 <div class="d-grid h-100 p-3 gap-3">
-  <div class="list-container d-flex gap-2 p-3">
+  <div class="list-container d-flex gap-2 p-3 dropZone">
     {% for todo in todos %}
     {% if not todo.isDone %}
-    <div class="d-grid todo-container" style="
+    <div class="d-grid todo-container dragElement" draggable="true" style="
       border-color: {{ todo.category.color }}; 
       background-color: {{ todo.category.color|hex_to_rgba:0.2 }};">
       <div class="d-grid gap-2 card">
@@ -40,10 +40,10 @@
       <a class="btn btn-primary" href="/newtodo">+</a>
     </div>
   </div>
-  <div class="list-container d-flex gap-2 p-3">
+  <div class="list-container d-flex gap-2 p-3 dropZone">
     {% for todo in todos %}
     {% if todo.isDone %}
-    <div class="d-grid todo-container"style="
+    <div class="d-grid todo-container dragElement" draggable="true" style="
       border-color: {{ todo.category.color }}; 
       background-color: {{ todo.category.color|hex_to_rgba:0.2 }};">
       <div class="d-grid gap-2 card">
