@@ -24,25 +24,36 @@ body {
     background-color: #1a1a2e;
     border-radius: 1.5rem;
     height: 100%;
+    width: 100%;
     border: #3b3b5a solid 3px;
-    transition: 0.3s;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 .todo-container {
+    display: inline-block;
     position: relative;
     background-color: #2d2d44;
-    /* height: 96%;
-    top: 2%;
-    left: 0.6%; */
+    float: none;
+    height: 100%;
     width: 20%;
     border-radius: 1.5rem;
     border: #3b3b5a solid 3px;
 }
 
+.todo-container div {
+    height: 100%
+}
+
 .buttons-group {
     position: absolute;
-    bottom: 10px; /* Distance from the bottom */
-    right: 10px;
+    top: 4.5%;
+    left: 85%;
+    /* Other positioning (e.g., left: 0, right: 0) and styling */
+    width: 100%; /* Example: Make it span the full width of the base div */
+    height: 50px;
+    z-index: 100;
 }
 
 .todo-title {
@@ -59,15 +70,16 @@ body {
 }
 
 .beingDragged {
- color: white;
-  background-color: black;
+    color: white;
+    background-color: black;
 }
 
 .hoverOver {
-  transition: 0.3s ease-out;
-  border: solid 5px #2a9d8f;
+    transition: 0.3s ease-out;
+    border: solid 5px #2a9d8f;
 }
 
-.dragElement, .dropZone {
-transition: 0.3s;
+.dragElement,
+.dropZone {
+    transition: 0.3s;
 }

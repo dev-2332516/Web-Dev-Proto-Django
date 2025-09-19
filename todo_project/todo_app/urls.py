@@ -8,4 +8,5 @@ urlpatterns = [
     path('newcategory', views.CategoryFormView.as_view(), name="category-form"),
     path('deleteform/<int:id>', views.DeleteTodo, name='delete-todo'),
     path('completetodo/<int:id>', views.CompleteTodo, name='complete-todo'),
+    path('uncompletetodo/<int:id>', views.UncompleteTodo, name='uncomplete-todo'),
 ]

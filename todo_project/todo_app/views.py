@@ -1,7 +1,7 @@
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
-
+from django.http import JsonResponse
 
 from .forms import TodoForm
 from .forms import CategoryForm
@@ -52,8 +52,23 @@ def DeleteTodo(request, id):
     return redirect('todo-list')
 
 def CompleteTodo(request, id):
-    completedTodo = Todo.objects.get(id=id)
-    completedTodo.isDone = True
-    completedTodo.save()
-    
-    return redirect('todo-list')
+    if request.method == 'POST':
+        try:
+            completedTodo = Todo.objects.get(id=id)
+            completedTodo.isDone = True
+            completedTodo.save()
+            return JsonResponse({'status': 'success', 'message': 'Todo marked as done'})
+        except Todo.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Todo not found'}, status=404)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
+
+def UncompleteTodo(request, id):
+    if request.method == 'POST':
+        try:
+            completedTodo = Todo.objects.get(id=id)
+            completedTodo.isDone = False
+            completedTodo.save()
+            return JsonResponse({'status': 'success', 'message': 'Todo marked as done'})
+        except Todo.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Todo not found'}, status=404)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
