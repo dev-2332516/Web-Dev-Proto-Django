@@ -15,7 +15,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="../static/css/coloris.css" />
+  <link rel="stylesheet" href="{% static 'colorfield/coloris/coloris.css' %}" />
+  <script src="{% static 'colorfield/coloris/coloris.js' %}"></script>
+  <script src="{% static 'colorfield/colorfield.js' %}"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
 </head>
 
@@ -43,8 +45,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"></script>
-  <script src="../static/js/coloris.js"></script>
-  <script src="../static/js/script.js"></script>
+
+  <script src="{% static 'js/script.js' %}"></script>
   <script>
     Coloris({
       theme: 'polaroid',

@@ -1,0 +1,85 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #1a1a2e;
+}
+
+.container {
+    /*Next line is to override bootstrap*/
+    --bs-gutter-x: 0rem;
+    position: relative;
+    background-color: #2d2d44;
+    border-radius: 1.5rem;
+    height: 85%;
+}
+
+.list-container {
+    position: relative;
+    background-color: #1a1a2e;
+    border-radius: 1.5rem;
+    height: 100%;
+    width: 100%;
+    border: #3b3b5a solid 3px;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.todo-container {
+    display: inline-block;
+    position: relative;
+    background-color: #2d2d44;
+    float: none;
+    height: 100%;
+    width: 20%;
+    border-radius: 1.5rem;
+    border: #3b3b5a solid 3px;
+}
+
+.todo-container div {
+    height: 100%
+}
+
+.buttons-group {
+    position: absolute;
+    top: 4.5%;
+    left: 85%;
+    /* Other positioning (e.g., left: 0, right: 0) and styling */
+    width: 100%; /* Example: Make it span the full width of the base div */
+    height: 50px;
+    z-index: 100;
+}
+
+.todo-title {
+    text-align: center;
+}
+
+.card {
+    background-color: transparent;
+    border: transparent 0px;
+}
+
+.btn {
+    border-radius: 1.5rem;
+}
+
+.beingDragged {
+    color: white;
+    background-color: black;
+}
+
+.hoverOver {
+    transition: 0.3s ease-out;
+    border: solid 5px #2a9d8f;
+}
+
+.dragElement,
+.dropZone {
+    transition: 0.3s;
+}
