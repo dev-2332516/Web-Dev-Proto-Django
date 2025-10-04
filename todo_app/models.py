@@ -1,8 +1,26 @@
 from colorfield.fields import ColorField
 from django.db import models
 
+class User(models.Model):
+    id = models.AutoField(primary_key=True)
+    firstName = models.CharField(max_length=50, verbose_name="Prenom")
+    lastName = models.CharField(max_length=50, verbose_name="Nom")
+    profilePicture = models.CharField(max_length=150, verbose_name="ProfilePicture")
+    def __str__(self):
+        return self.id
+    class Meta: 
+        ordering = ('id', 'firstName', 'lastName', 'profilePicture')
+        verbose_name = "user"
+        verbose_name_plural = "user"
+
 class Category(models.Model):
     id = models.AutoField(primary_key=True)
+    userId = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="category",
+        null=True, blank=True)
+    
     name = models.CharField(max_length=20, verbose_name="Nom")
     color = ColorField(default='#FF0000')
     # backgroundColor = hex_to_rgba(color)
