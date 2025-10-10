@@ -9,14 +9,14 @@
             <h2>Vos informations de compte</h2>
             <br />
 
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     {% csrf_token %}
                     {{ form.as_p }}
-
+                    {{ profile_form.as_p }}
                     <p><a href="{% url 'password_edit' %}">Modifier votre mot de passe</a></p>
 
-                    <a href="{% url 'index' %}" class="btn btn-secondary">Annuler</a>
+                    <a href="{% url 'todo-list' %}" class="btn btn-secondary">Annuler</a>
                     <button type="submit" class="btn btn-primary">Confirmer <i
                             class="fas fa-chevron-right"></i></button>
                 </div>

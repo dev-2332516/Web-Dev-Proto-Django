@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.base import View
 
-class IndexView(View):
-    template_name = "todo-list.html"
+def CheckAuthenticated(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return None
 
+class IndexView(View):
     def get(self, request):
-        return render(request, self.template_name)
+        if not request.user.is_authenticated:
+            return redirect('member/login')
+        return render(request, "todo-list.html")

@@ -6,8 +6,14 @@ from django.http import JsonResponse
 from ..models import Todo
 from ..forms import TodoForm
 
+def CheckAuthenticated(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return None
+
 class TodoView(View):
     def get(self, request):
+        CheckAuthenticated(request)
         todo = Todo.objects.all()
         
         context = {

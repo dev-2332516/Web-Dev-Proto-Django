@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django import forms
-
+from .models import Profile
 
 class MyAuthenticationForm(AuthenticationForm):
     class Meta:
@@ -23,25 +23,29 @@ class MyPasswordChangeForm(PasswordChangeForm):
         self.fields['old_password'].widget.attrs['class'] = 'form-control'
         self.fields['new_password1'].widget.attrs['class'] = 'form-control'
         self.fields['new_password2'].widget.attrs['class'] = 'form-control'
+    
+class MyUserChangeForm(forms.ModelForm):
+    profile_picture = forms.ImageField(required=False)
 
-
-class MyUserChangeForm(UserChangeForm):
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password', 'last_login', 'is_superuser', 'is_staff', 'is_active', 'date_joined')
+        fields = ('username', 'first_name', 'last_name', 'email', 'profile_picture')
 
     def __init__(self, *args, **kwargs):
+        self.profile = kwargs.pop('profile', None)
         super(MyUserChangeForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs['class'] = 'form-control'
-        self.fields['first_name'].widget.attrs['class'] = 'form-control'
-        self.fields['last_name'].widget.attrs['class'] = 'form-control'
-        self.fields['email'].widget.attrs['class'] = 'form-control'
-        self.fields['password'].widget = forms.HiddenInput()
-        self.fields['last_login'].widget = forms.HiddenInput()
-        self.fields['is_superuser'].widget = forms.HiddenInput()
-        self.fields['is_staff'].widget = forms.HiddenInput()
-        self.fields['is_active'].widget = forms.HiddenInput()
-        self.fields['date_joined'].widget = forms.HiddenInput()
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
+    def save(self, commit=True):
+        user = super().save(commit)
+        if self.profile:
+            profile_picture = self.cleaned_data.get('profile_picture')
+            if profile_picture:
+                self.profile.profile_picture = profile_picture
+                if commit:
+                    self.profile.save()
+        return user
 
 
 class MyUserCreationForm(UserCreationForm):
@@ -57,3 +61,4 @@ class MyUserCreationForm(UserCreationForm):
         self.fields['email'].widget.attrs['class'] = 'form-control'
         self.fields['password1'].widget.attrs['class'] = 'form-control'
         self.fields['password2'].widget.attrs['class'] = 'form-control'
+

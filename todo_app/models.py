@@ -5,7 +5,7 @@ class User(models.Model):
     id = models.AutoField(primary_key=True)
     firstName = models.CharField(max_length=50, verbose_name="Prenom")
     lastName = models.CharField(max_length=50, verbose_name="Nom")
-    profilePicture = models.CharField(max_length=150, verbose_name="ProfilePicture")
+    profilePicture = models.ImageField()
     def __str__(self):
         return self.id
     class Meta: 

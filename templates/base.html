@@ -25,15 +25,21 @@
   <nav>
     <div class="container navBar">
       <div class="row">
-        <div class="col-12 text-center">
-          <img src="../media/project/pfptest.png">
-          <p>test</p>
+        <div class="d-flex col-12 text-center align-items-center justify-content-center" id="navContent">
           {% if user.is_authenticated %}
-          <a href="{% url 'user_edit' %}" class="btn">{{ user.first_name|upper }} {{ user.last_name|upper }}</a>
-          <a href="{% url 'logout' %}" class="btn">SE DÉCONNECTER</a>
+          {% if user.profile.profile_picture %}
+          <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
           {% else %}
-          <a href="{% url 'user_create' %}" class="btn">CRÉER UN COMPTE</a>
-          <a href="{% url 'login' %}" class="btn">SE CONNECTER</a>
+          <img src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" alt="Profile Picture" class="profile-picture">
+          {% endif %}
+          {% endif %}
+          {% if user.is_authenticated %}
+          <a href="{% url 'todo-list' %}" class="btn navBarBtn">ACCUEIL</a>
+          <a href="{% url 'user_edit' %}" class="btn navBarBtn">{{ user.username|upper }}</a>
+          <a href="{% url 'logout' %}" class="btn navBarBtn">SE DÉCONNECTER</a>
+          {% else %}
+          <a href="{% url 'user_create' %}" class="btn navBarBtn">CRÉER UN COMPTE</a>
+          <a href="{% url 'login' %}" class="btn navBarBtn">SE CONNECTER</a>
           {% endif %}
         </div>
       </div>

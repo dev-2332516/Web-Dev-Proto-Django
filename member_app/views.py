@@ -12,13 +12,13 @@ from .forms import MyAuthenticationForm, MyPasswordChangeForm, MyUserChangeForm,
 class MyLoginView(LoginView):
     form_class = MyAuthenticationForm
     template_name = 'member_app/login.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('todo-list')
 
 
 class MyLogoutView(View):
     def get(self, request):
         logout(request)
-        return redirect("index")
+        return redirect("todo-list")
 
 
 class UserCreationView(CreateView):
@@ -30,7 +30,7 @@ class UserCreationView(CreateView):
 class UserChangeView(LoginRequiredMixin, UpdateView):
     form_class = MyUserChangeForm
     template_name = 'member_app/user_edit.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('todo-list')
 
     def get_object(self, queryset=None):
         return self.request.user
@@ -47,3 +47,17 @@ class PasswordChangeSuccessView(LoginRequiredMixin, View):
 
     def get(self, request):
         return render(request, self.template_name)
+    
+def edit_profile(request):
+    user = request.user
+    profile = user.profile
+
+    if request.method == 'POST':
+        form = MyUserChangeForm(request.POST, request.FILES, instance=user, profile=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # or wherever you want to redirect
+    else:
+        form = MyUserChangeForm(instance=user, profile=profile)
+
+    return render(request, 'member_app/edit_profile.html', {'form': form})

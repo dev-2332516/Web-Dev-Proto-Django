@@ -10,6 +10,10 @@ body {
     background: #1a1a2e;
 }
 
+#navContent {
+    z-index: 1000;
+}
+
 .container {
     /*Next line is to override bootstrap*/
     --bs-gutter-x: 0rem;
@@ -86,4 +90,18 @@ body {
 .dragElement,
 .dropZone {
     transition: 0.3s;
+}
+
+.profile-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.navBarBtn {
+    color: white;
+    margin-left: 10px;
 }
