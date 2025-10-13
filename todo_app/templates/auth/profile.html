@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'Profile' %} - Sounify{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card card-dark">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">{% trans 'My Profile' %}</h3>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="text-center mb-4">
+                        {% if user.profile.picture %}
+                            <img src="{{ user.profile.picture.url }}" alt="Profile Picture" class="rounded-circle border border-secondary" style="width:100px; height:100px; object-fit:cover;">
+                        {% else %}
+                            <i class="fa fa-user-circle fa-5x text-secondary"></i>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">{% trans 'Username' %}</label>
+                        <input type="text" class="form-control" value="{{ user.username }}" disabled>
+                        <div class="form-text">{% trans 'Username cannot be changed' %}</div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form.picture.label_tag }}
+                        {{ form.picture }}
+                        {% if form.picture.errors %}
+                            <div class="text-danger small">{{ form.picture.errors.0 }}</div>
+                        {% endif %}
+                        <div class="form-text">{% trans 'Upload a new profile picture' %}</div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" type="submit">{% trans 'Update Profile Picture' %}</button>
+                        <a href="{% url 'todo-list' %}" class="btn btn-outline-light">{% trans 'Back to Home' %}</a>
+                        <a href="{% url 'password_change' %}" class="btn btn-outline-light">{% trans 'Change password' %}</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- TODO: Need to rework the UI -->

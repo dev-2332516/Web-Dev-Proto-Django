@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'Sign In' %} - Sounify{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="card card-dark">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">{% trans 'Sign In' %}</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                            <div class="text-danger small">{{ form.username.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.password.label_tag }}
+                        {{ form.password }}
+                        {% if form.password.errors %}
+                            <div class="text-danger small">{{ form.password.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" type="submit">{% trans 'Sign In' %}</button>
+                        <a href="{% url 'signup' %}" class="btn btn-outline-light">{% trans "Don't have an account? Sign Up" %}</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+<!-- TODO: Need to rework the UI -->

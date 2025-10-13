@@ -10,6 +10,18 @@ body {
     background: #1a1a2e;
 }
 
+#id_username,#id_password,#id_password1,#id_password2 {
+    color: black;
+}
+
+#navContent {
+    z-index: 1000;
+}
+
+.navBar {
+    margin-top: 1.5%;
+}
+
 .container {
     /*Next line is to override bootstrap*/
     --bs-gutter-x: 0rem;
@@ -82,4 +94,14 @@ body {
 .dragElement,
 .dropZone {
     transition: 0.3s;
+}
+
+.profile-picture {
+    width: 4%;
+    border-radius: 100%;
+}
+
+.navBarBtn {
+    color: white;
+    margin-left: 10px;
 }
